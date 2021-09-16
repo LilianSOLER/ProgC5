@@ -48,7 +48,7 @@ int abs(int n) {
  * @return la valeur absolue du la valeur réelle passée en argument.
  */
 float absf(float n) {
-  return sqrtf(n*n);
+  return (float) abs((int)n);
 }
 
 /**
@@ -57,7 +57,7 @@ float absf(float n) {
  * @param x,y
  */
 int min(int x, int y) {
-  return min(x,y);
+  return (x < y) ? x : (x > y) ? y : x;
 }
 
 /**
@@ -66,7 +66,7 @@ int min(int x, int y) {
  * @param x,y
  */
 float minf(float x, float y) {
-  return fminf(x,y);
+  return (x < y) ? x : (x > y) ? y : x;
 }
 
 /**
@@ -75,7 +75,7 @@ float minf(float x, float y) {
  * @param x,y
  */
 int max(int x, int y) {
-  return 0;
+  return (x < y) ? y : (x > y) ? x : x;
 }
 
 /**
@@ -84,7 +84,7 @@ int max(int x, int y) {
  * @param x,y
  */
 float maxf(float x, float y) {
-  return 0.0f;
+  return (x < y) ? y : (x > y) ? x : x;
 }
   
 /**
@@ -95,7 +95,7 @@ float maxf(float x, float y) {
  *         +1 si la première valeur est supérieur à la seconde.
  */
 int comp(int x, int y) {
-  return 0;
+  return (x < y) ? -1 : (x > y) ? 1 : 0;
 }
 
 /**
@@ -105,9 +105,9 @@ int comp(int x, int y) {
  *         -1 si la première valeur est inférieur à la seconde.
  *         +1 si la première valeur est supérieur à la seconde.
  */
- int compf(float x, float y) {
-  return 0;
- }
+int compf(float x, float y) {
+  return ((int) x < (int) y) ? -1 : ((int) x > (int) y) ? 1 : 0;
+}
 
 /**
  * Calcule la fonction factorielle de la valeur entière passée en argument.
@@ -118,7 +118,10 @@ int comp(int x, int y) {
  *         -1 si la valeur de l'argument "n" est inférieur à zéro 
  */
 int factorial(int n) {
-  return 0;
+  if (n <= 0)
+    return -1;
+  else
+    return n * factorial(n - 1);
 }
 
 /**
@@ -132,5 +135,10 @@ int factorial(int n) {
  * @return  a à la puissance b
  */
 float power(float a, float b) {
-  return 0.0f;
+  if (b == 0.0f)
+    return 1.0f;
+  else if (b == 1.0f)
+    return a;
+  else
+    return a * power(a, b - 1.0f);
 }
