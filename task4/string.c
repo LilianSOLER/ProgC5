@@ -6,7 +6,12 @@
  *          "abc" -> length = 3
  */
 int string_length(char *s) {
-  return 0;
+    int length = 0;
+    while(*s != '\0') {
+        length++;
+        s++;
+    }
+    return length;
 }  
 
 
@@ -16,6 +21,12 @@ int string_length(char *s) {
  * @param s2 est la seconde chaîne
  */
 void string_copy(char* s1, char* s2) {
+    while(*s2 != '\0') {
+        *s1 = *s2;
+        s1++;
+        s2++;
+    }
+    *s1 = '\0';
 }
 
 /**
@@ -25,8 +36,9 @@ void string_copy(char* s1, char* s2) {
  * @param s2 est la seconde chaîne
  */
 void string_concat(char* s1, char* s2) {
+    int len1 = string_length(s1);
+    string_copy(s1+len1, s2);
 }
-
 /**
  * Compare les deux chaînes de caractères
  * @param s1
@@ -36,7 +48,19 @@ void string_concat(char* s1, char* s2) {
  *         1 si  la chaîne s1 est lexicographiquement supérieur à la chaîne s2
  */
 int string_cmp(char *s1, char* s2) {
-  return 0;
+    while (*s1 == *s2) {
+        if (*s1 == '\0') {
+            return 0;
+        }
+        s1++;
+        s2++;
+    }
+
+    if (*s1 < *s2) {
+        return -1;
+    }
+
+    return 1;
 }
 
 
@@ -45,7 +69,14 @@ int string_cmp(char *s1, char* s2) {
  * à partir de la position donné (offset).
  */
 int string_index_of(char *dst, int offset, char ch) {
-  return 0;
+    int i = offset;
+    while (*(dst+i) != '\0') {
+        if (*(dst+i) == ch) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
 }
 
 /**
@@ -58,7 +89,8 @@ int string_index_of(char *dst, int offset, char ch) {
  * @param doff: l'offset dnas la chaîne destination
  * @param src: la chaîne source
  * @param offset: l'offset de la sous-chaîne à copier.
- * @param length: la loongueur de la sous-chaîne à copier.
+ * @param length: la longueur de la sous-chaîne à copier.
  */
 void string_substring(char* dst, int doff, char *src, int offset, int length) {
+  strncat(dst+doff, src+offset, length);
 }

@@ -1,15 +1,16 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../task3/math.c"
 #include "string.c"
 
 void test_string_length() {
   char *s1 = "Hello World";
+  char *s2 = "World Hello";
   int len = string_length(s1);
   printf("length(\"%s\")=%d\n",s1,len);
-
 }
 
 void test_string_concat() {
