@@ -7,7 +7,11 @@
  * @return the sum of the values in the array
  */
 int array_sum(int* values, int off, int len) {
-  return 0;
+  int sum = 0;
+  for (int i = off; i < len; i++) {
+    sum += values[i];
+  }
+  return sum;
 }
 
 /**
@@ -19,7 +23,11 @@ int array_sum(int* values, int off, int len) {
  * @return the sum of the values in the array
  */
 float array_sumf(float* values, int off, int len) {
-  return 0;
+  float sum = 0;
+  for (int i = off; i < len; i++) {
+    sum += values[i];
+  }
+  return sum;
 }
 
 /**
@@ -31,7 +39,11 @@ float array_sumf(float* values, int off, int len) {
  * @return the average of the values in the array
  */
 int array_average(int* values, int off, int len) {
-  return 0;
+  int sum = 0;
+  for (int i = off; i < off+len; i++) {
+    sum += values[i];
+  }
+  return sum/len; 
 }
 
 /**
@@ -43,7 +55,11 @@ int array_average(int* values, int off, int len) {
  * @return the average of the values in the array
  */
 float array_averagef(float* values, int off, int len) {
-  return 0;
+  float sum = 0;
+  for (int i = off; i < off+len; i++) {
+    sum += values[i];
+  }
+  return sum/len;
 }
 
 /**
@@ -61,6 +77,9 @@ float array_averagef(float* values, int off, int len) {
  *          the number of values copied
  */
 void array_copy(int* dst, int dstOffset, int* src, int offset, int length) {
+  for (int i = 0; i < length; i++) {
+    dst[dstOffset+i] = src[offset+i];
+  }
 }
 
 /**
@@ -78,6 +97,9 @@ void array_copy(int* dst, int dstOffset, int* src, int offset, int length) {
  *          the number of values copied
  */
 void array_copyf(float* dst, int dstOffset, float* src, int offset, int length) {
+  for (int i = 0; i < length; i++) {
+    dst[dstOffset+i] = src[offset+i];
+  }
 }
 
 /**
@@ -87,6 +109,15 @@ void array_copyf(float* dst, int dstOffset, float* src, int offset, int length) 
  *          of values to sort
  */
 void array_sortf(float* array, int length) {
+  for (int i = 0; i < length; i++) {
+    for (int j = i+1; j < length; j++) {
+      if (array[i] > array[j]) {
+        float temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    }
+  }
 }
 
 /**
@@ -96,6 +127,15 @@ void array_sortf(float* array, int length) {
  *          of values to sort
  */
 void array_sort(int* array, int length) {
+  for (int i = 0; i < length; i++) {
+    for (int j = i+1; j < length; j++) {
+      if (array[i] > array[j]) {
+        float temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+      }
+    }
+  }
 }
 
 
