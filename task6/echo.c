@@ -42,7 +42,7 @@ char* read_line() {
     // de fin de ligne (ENTER)
     if (len >= BUFFER_SIZE)
       break;
-    // lire le prochaing caractère et le rajouter au buffer
+    // lire le prochain caractère et le rajouter au buffer
     // mais seulement si on a lu un caractère, sinon on simule
     // une fin de ligne en sortant de la boucle.
     if (read_char(&ch)!=1) {
