@@ -56,8 +56,8 @@ char *get_mot_a_trouver(){
 };
 
 char get_char(){
-    char c;
-    scanf("%c", &c); 
+    char c = getchar();;
+    while (getchar() != '\n')
     return toupper(c);
 }
 
