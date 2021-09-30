@@ -8,36 +8,60 @@
 #include <string.h>
 #include <time.h>
 
+#include <ctype.h>
+
 #include "../task4/string.c"
 #include "function_pendu.c"
 
-int main(int nargs, char** args) {
 
+int main(int nargs, char** args) {
   // initlalize the random generator
   srand(clock());
-  do{
-    int nombre_aleatoire = rand() % 49;
-    int nombre_essai = nombre_essai_mot(nombre_aleatoire);
-    char* mot_a_deviner = mot_a_deviner(nombre_aleatoire);
-    char* mot_a_deviner_pour_afficher = creer_tiret(strlen(*mot_a_deviner);
 
-    while (nombre_essai != 0) {
-      printf("Vous avez %d coups pour deviner le mot :\n", nombre_essai);
-      printf("%s\n", mot_a_deviner_pour_afficher);
-      do{
-        printf("?");
-        char lettre = lire_lettre();
-        printf("\n");
-      }while(lettre == NULL);
-      if(verif_lettre(lettre, *mot_a_deviner, *mot_a_deviner_pour_afficher)){
-        printf("Bravo !\n");
-        break;
-      }     
-    }
-    if(nombre_essai == 0){
-      printf("Vous avez perdu !\n");
-      printf("Le mot était : %s\n", *mot_a_deviner);
-    }
-  }while(continuer_verif());
+  // initlalize the variables
+  char *mot_a_trouver = get_mot_a_trouver();
+  printf("Le mot a trouver est : %s\n", mot_a_trouver);
+  int longueur_mot = strlen(mot_a_trouver);
+  char lettre = malloc(sizeof(char));
+  int *lettre_trouver = malloc(longueur_mot*sizeof(int));
+  int nb_essais = 2*longueur_mot;
+  printf("Nombre d'essais : %d\n", nb_essais);
+
+  // initlalize array of boolean (1 if the letter is in the word, 0 otherwise)
+  for(int i = 0; i < longueur_mot; i++) {
+    *(lettre_trouver + i) = 0;
+  }
+
+  //Game loop
+
+  while (nb_essais > 0 && !gagne(lettre_trouver,longueur_mot)) {
+
+    //print array of boolean
+  printf("{");
+  for(int i = 0; i < longueur_mot; i++) {
+    (i != longueur_mot - 1) ? printf(" %d ,", *(lettre_trouver + i)) : printf(" %d", *(lettre_trouver + i));
+  }
+  printf("}\n");
+
+    printf("Vous avez %d coups pour deviner le mot : \n", nb_essais);
+    
+    //display the word with the letters already found
+    for(int i = 0; i < longueur_mot; i++) {
+    (*(lettre_trouver + i)== 1) ? printf("%c", mot_a_trouver[i]) : printf("_ ");
+  }
+
+  printf("\n");
+  printf("?");
+
+  //get the letter
+  lettre = get_char();
+  
+  if(!is_in_mot(lettre, mot_a_trouver,lettre_trouver,longueur_mot)){
+    nb_essais--;
+  }
+  
+  printf("\n");
+  }
+
   printf("Bye.\n");
 }
