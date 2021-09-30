@@ -56,9 +56,12 @@ char *get_mot_a_trouver(){
 };
 
 char get_char(){
-    char c = getchar();;
-    while (getchar() != '\n')
-    return toupper(c);
+    char c = 0;
+    c = getchar();
+    while (getchar() != '\n'){
+      c = getchar();
+    }
+    return c;
 }
 
 int is_in_mot(char lettre, char *mot_a_trouver,int *lettre_trouver,int longueur_mot){
